@@ -1158,3 +1158,29 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(()=>{});
   });
 }
+
+
+/* ===== ページを開いた時刻をホーム右上へ反映 ===== */
+function updateHomeOpenedTime(){
+  const el = document.getElementById("homeUpdate");
+  if (!el) return;
+
+  const now = new Date();
+  const weekdays = ["日","月","火","水","木","金","土"];
+  const y = now.getFullYear();
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  const w = weekdays[now.getDay()];
+  const h = now.getHours();
+  const min = String(now.getMinutes()).padStart(2, "0");
+
+  el.textContent = `${y}年${m}月${d}日(${w}) ${h}:${min} 更新`;
+}
+
+updateHomeOpenedTime();
+
+/* PWAを閉じずに再度開いた場合も、表示した瞬間の時刻へ更新 */
+document.addEventListener("visibilitychange", ()=>{
+  if (!document.hidden) updateHomeOpenedTime();
+});
+window.addEventListener("pageshow", updateHomeOpenedTime);

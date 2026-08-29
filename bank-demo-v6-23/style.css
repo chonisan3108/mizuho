@@ -71,7 +71,7 @@ button{-webkit-tap-highlight-color:transparent}
 .balance-line{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-top:7px}
 .ghost-button{border:0;background:transparent;color:#c6c6df;padding:8px 0;font-size:16px}
 .balance{display:flex;align-items:end;gap:7px}
-.balance strong{font-size:49px;line-height:.84;font-weight:400;letter-spacing:-1.1px;display:inline-block;transform:scaleY(0.92);transform-origin:right bottom}
+.balance strong{font-size:49px;line-height:.95;font-weight:400;letter-spacing:-1.1px}
 .balance span{font-size:16px;padding-bottom:4px}
 .account-card{background:#fff;margin:-49px 22px 0;border-radius:11px;overflow:hidden}
 .account-head{padding:18px 22px 17px}
@@ -626,12 +626,9 @@ button{-webkit-tap-highlight-color:transparent}
 .balance{gap:6px}
 .balance strong{
   font-size:39px;
-  line-height:.76;
+  line-height:.88;
   font-weight:400;
   letter-spacing:-0.7px;
-  display:inline-block;
-  transform:translateY(-2px) scaleX(0.96) scaleY(0.85);
-  transform-origin:right bottom;
 }
 .balance span{
   font-size:14px;
@@ -1063,205 +1060,4 @@ button{-webkit-tap-highlight-color:transparent}
   line-height:1;
   font-weight:400;
   color:#7f8593;
-}
-
-/* ===== v6-26: 2枚目のiPhone表示を基準にホーム全体を再フィット ===== */
-.phone-shell{
-  max-width:430px;
-  padding-bottom:calc(78px + env(safe-area-inset-bottom));
-}
-.hero{
-  padding:calc(9px + env(safe-area-inset-top)) 20px 91px;
-}
-.top-row{
-  min-height:34px;
-  gap:9px;
-}
-.mizuho-wordmark{
-  width:91px;
-  height:39px;
-}
-.top-actions{gap:8px}
-.points{
-  height:35px;
-  min-width:121px;
-  padding:0 10px;
-  gap:8px;
-  font-size:17px;
-}
-.points strong,.points-unit{font-size:17px}
-.coin{width:22px;height:22px;flex-basis:22px;font-size:14px}
-.top-icon{width:26px;height:26px;flex-basis:26px}
-.top-icon svg{width:26px;height:26px}
-.bell-icon{width:24px;flex-basis:24px}
-.bell-icon svg{width:24px;height:24px}
-.update{
-  margin-top:24px;
-  font-size:13px;
-  line-height:18px;
-}
-.balance-line{
-  margin-top:1px;
-  min-height:42px;
-  align-items:flex-start;
-}
-.ghost-button{
-  gap:5px;
-  font-size:14px;
-  line-height:18px;
-  padding:6px 0 0;
-}
-.eye-off-icon{width:18px;height:18px;flex-basis:18px}
-.balance{
-  gap:5px;
-  align-items:baseline;
-  margin-top:-2px;
-  margin-left:auto;
-  white-space:nowrap;
-}
-.balance strong{
-  font-size:34px;
-  line-height:1;
-  font-weight:400;
-  letter-spacing:-1px;
-  transform:none;
-  font-variant-numeric:tabular-nums;
-}
-.balance span{
-  font-size:12px;
-  line-height:1;
-  padding-bottom:0;
-  font-weight:400;
-}
-.account-card{
-  margin:-89px 20px 0;
-  border-radius:10px;
-}
-.account-head{
-  min-height:68px;
-  padding:9px 21px 7px;
-}
-.branch{
-  font-size:22px;
-  line-height:27px;
-  font-weight:400;
-}
-.account-number{
-  margin-top:0;
-  font-size:15px;
-  line-height:19px;
-}
-.card-section-title{
-  height:28px;
-  padding:4px 21px;
-  font-size:14px;
-  line-height:18px;
-  font-weight:600;
-}
-.transaction-row{
-  min-height:59px;
-  height:59px;
-  padding:6px 21px 5px;
-  gap:11px;
-}
-.transaction-row .name{
-  font-size:15.5px;
-  line-height:19px;
-  font-weight:400;
-  letter-spacing:.04em;
-}
-.transaction-row .date{
-  margin-top:3px;
-  font-size:12.5px;
-  line-height:15px;
-  font-weight:400;
-}
-.transaction-row .amount{gap:3px}
-.transaction-row .amount-value{
-  font-size:17px;
-  line-height:1;
-  font-weight:400;
-}
-.transaction-row .yen{
-  font-size:11px;
-  line-height:1;
-  font-weight:400;
-  margin-bottom:1px;
-}
-.primary-button{
-  width:calc(100% - 40px);
-  height:50px;
-  margin:18px 20px 25px;
-  padding:0 16px;
-  border-radius:7px;
-  font-size:16px;
-  line-height:50px;
-  font-weight:500;
-}
-.bottom-nav{
-  height:calc(49px + env(safe-area-inset-bottom));
-  min-height:0;
-  padding:4px 0 calc(3px + env(safe-area-inset-bottom));
-}
-.nav-item{
-  gap:0;
-  padding-top:0;
-  justify-content:flex-start;
-}
-.nav-icon{width:23px;height:23px}
-.nav-item small{
-  font-size:10.5px;
-  line-height:13px;
-  font-weight:400;
-  letter-spacing:-.025em;
-}
-.nav-item.selected small{font-weight:600}
-
-@media (max-width:360px){
-  .hero{padding-left:17px;padding-right:17px}
-  .account-card{margin-left:17px;margin-right:17px}
-  .primary-button{width:calc(100% - 34px);margin-left:17px;margin-right:17px}
-}
-
-
-/* ===== v6-29: 入出金明細一覧の金額を緑色表示 ===== */
-#detailsView .detail-row .amount,
-#detailsView .detail-row .amount .amount-value,
-#detailsView .detail-row .amount .yen {
-  color: #00a66a !important;
-}
-
-/* ===== v6-30: 明細一覧は＋金額だけ緑、円表記は黒 ===== */
-#detailsView .detail-row .amount,
-#detailsView .detail-row .amount .amount-value {
-  color: #111 !important;
-}
-
-#detailsView .detail-row .amount.income .amount-value {
-  color: #00a66a !important;
-}
-
-#detailsView .detail-row .amount .yen,
-#detailsView .detail-row .amount.income .yen {
-  color: #111 !important;
-}
-
-/* ===== v6-31: 取引ごとの「残高」を必ず横書きにする ===== */
-#detailsView .detail-row .running {
-  white-space: nowrap;
-  flex-wrap: nowrap;
-}
-
-#detailsView .detail-row .running-label {
-  display: inline-block;
-  white-space: nowrap;
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-  flex: 0 0 auto;
-}
-
-#detailsView .detail-row .running-value,
-#detailsView .detail-row .running .yen {
-  flex: 0 0 auto;
-  white-space: nowrap;
 }

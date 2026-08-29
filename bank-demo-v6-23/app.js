@@ -1,6 +1,5 @@
 const detailTransactionsByMonth = {
   "2026-08": [
-    {name:"ミツイスミトモカード　（カ", date:"2026年8月26日(水)", amount:-495, balance:210374},
     {name:"振込　マツモト　ケイ", date:"2026年8月25日(火)", amount:67000, balance:210869},
     {name:"振込　ＵＢＥＲ　ＥＡＴＳ　ＪＡＰＡＮ（ド", date:"2026年8月25日(火)", amount:6998, balance:143869},
     {name:"振込　ＵＢＥＲ　ＥＡＴＳ　ＪＡＰＡＮ（ド", date:"2026年8月18日(火)", amount:52390, balance:136871},
@@ -760,8 +759,8 @@ document.querySelectorAll(".nav-item[data-view]").forEach(btn=>{
 let hidden = false;
 function toggleBalance(){
   hidden = !hidden;
-  document.getElementById("homeBalance").textContent = hidden ? "••••••" : "210,374";
-  document.getElementById("detailBalance").textContent = hidden ? "••••••" : "210,374";
+  document.getElementById("homeBalance").textContent = hidden ? "••••••" : "210,869";
+  document.getElementById("detailBalance").textContent = hidden ? "••••••" : "210,869";
 }
 
 document.getElementById("balanceToggle").addEventListener("click",toggleBalance);
@@ -1159,27 +1158,3 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(()=>{});
   });
 }
-
-
-/* ===== ページを開いた時刻をホーム右上へ反映 ===== */
-function updateHomeOpenedTime(){
-  const el = document.getElementById("homeUpdate");
-  if (!el) return;
-
-  const now = new Date();
-  const weekdays = ["日","月","火","水","木","金","土"];
-  const y = now.getFullYear();
-  const m = now.getMonth() + 1;
-  const d = now.getDate();
-  const w = weekdays[now.getDay()];
-  const h = now.getHours();
-  const min = String(now.getMinutes()).padStart(2, "0");
-
-  el.textContent = `${y}年${m}月${d}日(${w}) ${h}:${min} 更新`;
-}
-
-updateHomeOpenedTime();
-document.addEventListener("visibilitychange", ()=>{
-  if (!document.hidden) updateHomeOpenedTime();
-});
-window.addEventListener("pageshow", updateHomeOpenedTime);

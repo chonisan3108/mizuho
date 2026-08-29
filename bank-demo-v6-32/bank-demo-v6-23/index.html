@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#000061" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Bank Demo" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Bank Demo</title>
+</head>
+<body>
+<main class="phone-shell">
+
+  <!-- ホーム -->
+  <section id="homeView" class="view active-view">
+    <header class="hero">
+      <div class="top-row">
+        <div class="brand mizuho-wordmark" aria-label="MIZUHO">
+          <img src="mizuho-logo-crop.png" alt="MIZUHO" />
+        </div>
+        <div class="top-actions">
+          <div class="points"><span class="coin">P</span><strong>245</strong><span class="points-unit">pt</span></div>
+          <span class="top-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M5.5 17.5v-2.4C5.5 9.1 10.2 4.5 16 4.5s10.5 4.6 10.5 10.6v2.4"/><rect x="4.2" y="16" width="5.8" height="9.4" rx="2.4"/><rect x="22" y="16" width="5.8" height="9.4" rx="2.4"/><path d="M23.5 25.5c-1.4 2-3.9 3-7.2 3h-2.2"/><circle cx="12.7" cy="28.4" r="1.4" class="fill-icon"/></svg>
+          </span>
+          <span class="top-icon bell-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path class="fill-icon" d="M16 29.3c1.9 0 3.5-1.5 3.8-3.3h-7.6c.3 1.8 1.9 3.3 3.8 3.3Zm10.2-7.2-2.7-3V13c0-4.1-2.3-7.4-6.2-8.3V3.4a1.4 1.4 0 0 0-2.8 0v1.3C10.6 5.6 8.4 8.9 8.4 13v6.1l-2.7 3a1.7 1.7 0 0 0 1.3 2.8h18a1.7 1.7 0 0 0 1.2-2.8Z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="update">2026年8月29日(土) 9:13 更新</div>
+
+      <div class="balance-line">
+        <button id="balanceToggle" class="ghost-button" type="button">
+          <span>表示／非表示</span>
+          <svg class="eye-off-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M3.3 14s3.8-6.2 10.7-6.2c2.1 0 3.9.6 5.4 1.5M24.7 14S20.9 20.2 14 20.2c-2.1 0-4-.6-5.5-1.6M11.5 11.6a3.6 3.6 0 0 0 5 5M5 4.8l18 18.4"/></svg>
+        </button>
+        <div class="balance"><strong id="homeBalance">210,869</strong><span>円</span></div>
+      </div>
+    </header>
+
+    <section class="account-card">
+      <div class="account-head">
+        <div class="branch">鎌倉支店</div>
+        <div class="account-number">普通 760-3031681</div>
+      </div>
+      <div class="card-section-title">最近のお取引</div>
+      <div id="recentTransactions"></div>
+    </section>
+
+    <button id="openDetails" class="primary-button" type="button">入出金明細を見る</button>
+  </section>
+
+  <!-- 入出金明細 -->
+  <section id="detailsView" class="view">
+    <header class="details-hero">
+      <button id="backHome" class="back-button" type="button" aria-label="ホームに戻る">‹</button>
+      <div class="details-title">
+        <div class="branch small">鎌倉支店</div>
+        <div class="account-number light">普通 760-3031681</div>
+      </div>
+
+      <div class="update details-update">2026年8月29日(土) 7:15 更新</div>
+
+      <div class="balance-line details-balance">
+        <button id="detailBalanceToggle" class="ghost-button" type="button"><span>表示／非表示</span><svg class="eye-off-icon" viewBox="0 0 28 28" aria-hidden="true"><path d="M3.3 14s3.8-6.2 10.7-6.2c2.1 0 3.9.6 5.4 1.5M24.7 14S20.9 20.2 14 20.2c-2.1 0-4-.6-5.5-1.6M11.5 11.6a3.6 3.6 0 0 0 5 5M5 4.8l18 18.4"/></svg></button>
+        <div class="balance"><strong id="detailBalance">210,869</strong><span>円</span></div>
+      </div>
+
+      <div class="withdrawable">
+        <span>引出可能金額</span>
+        <strong>210,869 円</strong>
+      </div>
+    </header>
+
+    <div class="month-tabs-wrap">
+      <div class="month-year-label" id="detailYearLabel">2026</div>
+      <div class="month-tabs" id="monthTabs">
+        <button type="button" data-key="2025-01">1月</button>
+        <button type="button" data-key="2025-02">2月</button>
+        <button type="button" data-key="2025-03">3月</button>
+        <button type="button" data-key="2025-04">4月</button>
+        <button type="button" data-key="2025-05">5月</button>
+        <button type="button" data-key="2025-06">6月</button>
+        <button type="button" data-key="2025-07">7月</button>
+        <button type="button" data-key="2025-08">8月</button>
+        <button type="button" data-key="2025-09">9月</button>
+        <button type="button" data-key="2025-10">10月</button>
+        <button type="button" data-key="2025-11">11月</button>
+        <button type="button" data-key="2025-12">12月</button>
+        <button type="button" data-key="2026-01">1月</button>
+        <button type="button" data-key="2026-02">2月</button>
+        <button type="button" data-key="2026-03">3月</button>
+        <button type="button" data-key="2026-04">4月</button>
+        <button type="button" data-key="2026-05">5月</button>
+        <button type="button" data-key="2026-06">6月</button>
+        <button type="button" data-key="2026-07">7月</button>
+        <button type="button" data-key="2026-08" class="selected">8月</button>
+      </div>
+    </div>
+
+    <section class="detail-list" id="detailTransactions"></section>
+  </section>
+
+  <!-- 取引の詳細 -->
+  <section id="transactionView" class="view transaction-view">
+    <header class="transaction-hero">
+      <button id="backDetails" class="back-button" type="button" aria-label="入出金明細に戻る">‹</button>
+      <h1>取引の詳細</h1>
+
+      <div class="transaction-summary">
+        <div id="transactionType" class="transaction-type">支出</div>
+        <div class="transaction-big-amount">
+          <strong id="transactionAmount">-2,000</strong><span>円</span>
+        </div>
+      </div>
+
+      <div class="transaction-balance-bar">
+        <span>残高</span>
+        <strong id="transactionBalance">6,670 円</strong>
+      </div>
+    </header>
+
+    <section class="transaction-detail-body">
+      <div id="transactionName" class="transaction-name">ＰＡＹＰＡＹ</div>
+
+      <div class="detail-field-row">
+        <span class="field-label">日付</span>
+        <strong id="transactionDate">2026年8月27日(木)</strong>
+      </div>
+
+      <div class="memo-section">
+        <label for="memoInput">メモ</label>
+        <textarea id="memoInput" maxlength="50" placeholder="メモを入力（50文字以内）"></textarea>
+      </div>
+
+      <button id="saveMemo" class="secondary-action" type="button" disabled>保存する</button>
+      <button id="deleteMemo" class="secondary-action" type="button" disabled>削除する</button>
+    </section>
+  </section>
+
+  <!-- 収支レポート -->
+  <section id="reportView" class="view report-view">
+    <header class="report-top">
+      <div class="report-tabs">
+        <button class="selected" type="button">銀行口座</button>
+        <button type="button">家計管理</button>
+      </div>
+    </header>
+
+    <section class="report-body">
+      <div class="report-heading">
+        <strong id="reportMonthTitle">2026年8月</strong>
+        <button type="button" class="text-button">対象口座の選択</button>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-scale top">400,000</div>
+        <div class="chart-scale zero">0</div>
+        <div class="chart-scale bottom">-400,000</div>
+
+        <div id="chartScroller" class="chart-scroller" aria-label="左右にスライドして過去の月を表示できます">
+          <svg id="reportChart" class="chart" role="img" aria-label="月別の収支グラフ"></svg>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <div>
+          <span>収入</span>
+          <strong id="reportIncome" class="blue">+184,052<small>円</small></strong>
+        </div>
+        <div>
+          <span>支出</span>
+          <strong id="reportExpense" class="red">-178,966<small>円</small></strong>
+        </div>
+        <div>
+          <span>収支</span>
+          <strong id="reportNet" class="green">+5,086<small>円</small></strong>
+        </div>
+      </div>
+
+      <section class="evaluation">
+        <div class="evaluation-head">
+          <div>
+            <div id="evaluationTitle" class="evaluation-title">今月の評価</div>
+            <div id="evaluationDate" class="evaluation-date">2026年8月1日(土) - 2026年8月29日(土)</div>
+          </div>
+          <div id="evaluationBadge" class="evaluation-badge">残り2日</div>
+        </div>
+
+        <div id="evaluationText" class="evaluation-text">
+          1日平均で言うと約 <span class="red-text">6,171</span> 円使っています。
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="report-section-title">特に高かった支出</div>
+        <div id="highExpenseList"></div>
+      </section>
+
+      <section id="highIncomeSection" class="report-section">
+        <div class="report-section-title">特に高かった収入</div>
+        <div id="highIncomeList"></div>
+      </section>
+    </section>
+  </section>
+
+
+  <!-- 振込・振替 -->
+  <section id="transferView" class="view transfer-view">
+    <section class="transfer-page">
+      <h1>振込・振替</h1>
+      <p class="transfer-lead">ご希望のお取引を選択のうえ、お進みください。</p>
+
+      <div class="transfer-menu-title">振込・振替メニュー</div>
+
+      <div class="transfer-menu-grid">
+        <button class="transfer-card primary transfer-demo-action" type="button">
+          <span class="transfer-card-icon">￥→</span>
+          <span>振込</span>
+        </button>
+
+        <button class="transfer-card primary transfer-demo-action" type="button">
+          <span class="transfer-card-icon">↻￥</span>
+          <span>振替</span>
+        </button>
+
+        <button class="transfer-card transfer-demo-action" type="button">
+          <span class="transfer-card-icon">▣￥</span>
+          <span>税金・公共料金</span>
+        </button>
+
+        <button class="transfer-card transfer-demo-action" type="button">
+          <span class="transfer-card-icon">≋￥</span>
+          <span>ことら送金</span>
+        </button>
+      </div>
+
+      <section class="history-block">
+        <div class="history-heading">
+          <div>
+            <div class="history-title">振込履歴</div>
+            <div class="history-updated">2026年8月27日(木)10:13 更新</div>
+          </div>
+          <button class="history-link transfer-demo-action" type="button">一覧を見る ›</button>
+        </div>
+
+        <div class="transfer-history-list">
+          <button class="transfer-history-row transfer-demo-action" type="button">
+            <div class="transfer-history-left">
+              <div class="history-name">ＪＬＮ（ド</div>
+              <div class="history-status-line">
+                <span>振込</span><span class="status-pill">取引成立</span>
+              </div>
+              <div class="history-date">2026年8月24日(月)</div>
+            </div>
+            <div class="transfer-history-right">
+              <span class="history-chevron">›</span>
+              <strong>4,413 <small>円</small></strong>
+            </div>
+          </button>
+
+          <button class="transfer-history-row transfer-demo-action" type="button">
+            <div class="transfer-history-left">
+              <div class="history-name">ド）ブルーベース</div>
+              <div class="history-status-line">
+                <span>振込</span><span class="status-pill">取引成立</span>
+              </div>
+              <div class="history-date">2026年8月12日(水)</div>
+            </div>
+            <div class="transfer-history-right">
+              <span class="history-chevron">›</span>
+              <strong>15,000 <small>円</small></strong>
+            </div>
+          </button>
+
+          <button class="transfer-history-row transfer-demo-action" type="button">
+            <div class="transfer-history-left">
+              <div class="history-name">オーシャンキッズ</div>
+              <div class="history-status-line">
+                <span>振込</span><span class="status-pill">取引成立</span>
+              </div>
+              <div class="history-date">2026年8月7日(金)</div>
+            </div>
+            <div class="transfer-history-right">
+              <span class="history-chevron">›</span>
+              <strong>2,600 <small>円</small></strong>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="transfer-history-empty">
+        <div class="history-title">振替履歴</div>
+        <div class="history-updated">2025年12月23日(火)7:56 更新</div>
+      </section>
+
+      <div id="transferToast" class="transfer-toast" role="status" aria-live="polite">デモ画面です</div>
+    </section>
+  </section>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <button data-view="home" class="nav-item selected" type="button">
+      <svg class="nav-icon home-nav-icon" viewBox="0 0 32 32" aria-hidden="true"><path class="fill-icon" d="M3.5 14.3 16 4l12.5 10.3-2.4 2.9-1.8-1.5v11.8h-7v-8.2h-2.6v8.2h-7V15.7l-1.8 1.5-2.4-2.9Z"/></svg>
+      <small>ホーム</small>
+    </button>
+    <button data-view="report" class="nav-item" type="button">
+      <svg class="nav-icon report-nav-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="m5.2 22.6 7-8.2 6.2 4.5 8-10.2"/><circle cx="5" cy="22.7" r="2.6"/><circle cx="12.3" cy="14.3" r="2.6"/><circle cx="18.5" cy="18.9" r="2.6"/><circle cx="26.5" cy="8.7" r="2.6"/></svg>
+      <small>収支レポート</small>
+    </button>
+    <button data-view="transfer" class="nav-item" type="button">
+      <svg class="nav-icon transfer-nav-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.4"/><path d="M11.3 9.5 16 15l4.7-5.5M11.8 15h8.4M11.8 18.5h8.4M16 15v8"/></svg>
+      <small>振込・振替</small>
+    </button>
+    <button class="nav-item disabled" type="button" disabled>
+      <svg class="nav-icon service-nav-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="5.2" y="4.7" width="18.3" height="22.4" rx="2.5"/><path d="M8.4 10.1h11.9M8.4 14h8.6"/><circle cx="23.1" cy="21.8" r="5.1"/><path d="m20.8 18.9 2.3 2.6 2.3-2.6M20.8 22h4.6M23.1 21.5v3.2"/></svg>
+      <small>商品・サービス</small>
+    </button>
+    <button class="nav-item disabled" type="button" disabled>
+      <svg class="nav-icon menu-nav-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10.1" r="5.4"/><path d="M6.1 28.2c.5-6.1 4.1-10 9.9-10s9.4 3.9 9.9 10c-5.8 1.3-14 1.3-19.8 0Z"/></svg>
+      <small>お客さまメニュー</small>
+    </button>
+  </nav>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

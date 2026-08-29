@@ -1,0 +1,1066 @@
+*{box-sizing:border-box}
+:root{
+  --navy:#08006f;
+  --navy2:#302f92;
+  --bg:#eef0f6;
+  --text:#202127;
+  --muted:#767b89;
+  --line:#dfe2e8;
+  --green:#389b67;
+  --red:#ef2d24;
+  --blue:#090a7b;
+}
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Noto Sans JP","Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body{min-height:100vh}
+button,textarea{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.phone-shell{
+  width:100%;
+  max-width:430px;
+  margin:0 auto;
+  min-height:100vh;
+  background:var(--bg);
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+}
+.view{display:none}
+.active-view{display:block}
+
+/* 共通 */
+.hero,.details-hero,.transaction-hero{background:var(--navy);color:#fff}
+.back-button{
+  position:absolute;
+  left:17px;
+  top:calc(21px + env(safe-area-inset-top));
+  border:0;background:transparent;color:#fff;
+  font-size:47px;line-height:1;padding:0 8px;font-weight:300;
+}
+.amount{font-size:21px;font-weight:600;white-space:nowrap;letter-spacing:-.2px}
+.income{color:var(--green)}
+.date{font-size:16px;color:var(--muted);margin-top:8px;line-height:1.2}
+.name{
+  font-size:18px;line-height:1.35;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* ホーム */
+.hero{padding:calc(28px + env(safe-area-inset-top)) 22px 79px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:23px;white-space:nowrap}
+.demo-badge{
+  font-size:8px;border:1px solid rgba(255,255,255,.72);
+  padding:2px 4px;border-radius:4px;margin-left:4px;vertical-align:middle;
+}
+.top-actions{display:flex;align-items:center;gap:10px}
+.points{
+  display:flex;align-items:center;gap:9px;background:#3635a0;
+  padding:10px 14px;border-radius:8px;font-size:19px;line-height:1;
+}
+.coin{
+  display:grid;place-items:center;width:27px;height:27px;border-radius:50%;
+  background:#ffc424;color:#1c2e93;font-weight:800;font-size:15px;
+}
+.top-symbol{font-size:22px}
+.update{text-align:right;color:#b9b9da;font-size:16px;line-height:1.35;margin-top:31px}
+.balance-line{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-top:7px}
+.ghost-button{border:0;background:transparent;color:#c6c6df;padding:8px 0;font-size:16px}
+.balance{display:flex;align-items:end;gap:7px}
+.balance strong{font-size:49px;line-height:.84;font-weight:400;letter-spacing:-1.1px;display:inline-block;transform:scaleY(0.92);transform-origin:right bottom}
+.balance span{font-size:16px;padding-bottom:4px}
+.account-card{background:#fff;margin:-49px 22px 0;border-radius:11px;overflow:hidden}
+.account-head{padding:18px 22px 17px}
+.branch{font-size:24px;line-height:1.3;font-weight:400}
+.account-number{color:var(--muted);font-size:17px;margin-top:3px}
+.card-section-title{
+  background:#f5f6f9;color:#747986;font-weight:700;padding:11px 22px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:16px;
+}
+.transaction-row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:14px 22px;min-height:96px;border-bottom:1px solid var(--line);background:#fff;
+}
+.transaction-row:last-child{border-bottom:0}
+.transaction-row .left,.detail-row .left{min-width:0}
+.primary-button{
+  display:block;width:calc(100% - 44px);margin:18px 22px 28px;
+  border:0;border-radius:8px;background:var(--navy);color:#fff;
+  font-size:19px;font-weight:500;padding:18px;
+}
+
+/* 下部ナビ */
+.bottom-nav{
+  position:fixed;z-index:10;left:50%;bottom:0;transform:translateX(-50%);
+  width:100%;max-width:430px;background:#fff;border-top:1px solid #d8dbe1;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  padding:7px 2px calc(7px + env(safe-area-inset-bottom));
+}
+.nav-item{
+  border:0;background:transparent;color:#999da6;display:flex;min-width:0;
+  flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:3px 1px;
+}
+.nav-item span{font-size:27px;line-height:1}
+.nav-item small{font-size:11px;white-space:nowrap}
+.nav-item.selected{color:var(--navy)}
+.nav-item.disabled{opacity:.78}
+
+/* 入出金明細 */
+.details-hero{position:relative;padding:calc(24px + env(safe-area-inset-top)) 22px 18px}
+.details-title{text-align:center}
+.branch.small{font-size:20px}
+.account-number.light{color:#d1d2e6;font-size:15px}
+.details-update{margin-top:17px}
+.details-balance{margin-top:5px}
+.withdrawable{
+  margin-top:24px;background:#302f92;border-radius:8px;padding:12px 16px;
+  display:flex;justify-content:flex-end;gap:18px;align-items:center;color:#fff;font-size:16px;
+}
+.month-tabs-wrap{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+}
+.month-year-label{
+  text-align:center;
+  color:#8d93a2;
+  font-size:15px;
+  font-weight:600;
+  padding:8px 0 0;
+}
+.month-tabs{
+  display:flex;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  background:#fff;
+}
+.month-tabs::-webkit-scrollbar{display:none}
+.month-tabs button{
+  flex:0 0 64px;
+  border:0;
+  background:#fff;
+  padding:15px 2px 12px;
+  color:#545862;
+  font-size:17px;
+  border-bottom:4px solid transparent;
+}
+.month-tabs button.selected{color:var(--navy);border-bottom-color:var(--navy)}
+.detail-list{background:#fff}
+.detail-row{
+  width:100%;border:0;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  min-height:96px;padding:14px 20px 14px 24px;background:#fff;text-align:left;color:inherit;
+}
+.detail-row:active{background:#f6f7fa}
+.detail-row .right{text-align:right}
+.running{font-size:14px;color:var(--muted);margin-top:8px}
+
+/* 取引詳細 */
+.transaction-view{min-height:100vh;background:#fff}
+.transaction-hero{position:relative;padding:calc(25px + env(safe-area-inset-top)) 22px 18px}
+.transaction-hero h1{margin:0;text-align:center;font-size:20px;line-height:1.3;font-weight:700}
+.transaction-summary{
+  display:flex;align-items:end;justify-content:space-between;margin-top:44px;gap:16px;
+}
+.transaction-type{color:#c5c6df;font-size:17px;padding-bottom:8px}
+.transaction-big-amount{display:flex;align-items:end;gap:8px}
+.transaction-big-amount strong{font-size:52px;font-weight:400;letter-spacing:-1.6px;line-height:.95}
+.transaction-big-amount span{font-size:16px;padding-bottom:5px}
+.transaction-balance-bar{
+  margin-top:28px;background:#302f92;border-radius:8px;padding:12px 17px;
+  display:flex;justify-content:flex-end;gap:21px;align-items:center;font-size:16px;
+}
+.transaction-detail-body{background:#fff}
+.transaction-name{
+  min-height:75px;display:flex;align-items:center;padding:0 24px;font-size:22px;
+  letter-spacing:.08em;border-bottom:1px solid var(--line);
+}
+.detail-field-row{
+  min-height:88px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;
+  gap:16px;border-bottom:1px solid var(--line);
+}
+.field-label{color:#626773;font-size:17px}
+.detail-field-row strong{font-size:18px;font-weight:400}
+.memo-section{padding:28px 22px 22px}
+.memo-section label{display:block;color:#626773;font-size:17px;margin-bottom:24px}
+.memo-section textarea{
+  display:block;width:100%;height:156px;resize:none;border:1px solid #d8dce4;
+  border-radius:7px;padding:16px 18px;outline:none;font-size:17px;line-height:1.5;
+  color:var(--text);background:#fff;
+}
+.memo-section textarea::placeholder{color:#a9adb5}
+.secondary-action{
+  display:block;width:calc(100% - 44px);margin:0 22px 12px;padding:17px;border:0;
+  border-radius:8px;font-size:19px;font-weight:500;
+}
+.secondary-action:disabled{background:#a8abb1;color:#fff}
+.secondary-action:not(:disabled){background:var(--navy);color:#fff}
+
+/* 収支レポート */
+.report-view{background:var(--bg);min-height:100vh}
+.report-top{background:#fff;padding-top:calc(30px + env(safe-area-inset-top))}
+.report-tabs{
+  display:grid;grid-template-columns:1fr 1fr;border-bottom:4px solid #a9adb7;
+}
+.report-tabs button{
+  border:0;background:#fff;padding:18px 6px 14px;font-size:17px;color:#60636c;
+  border-bottom:4px solid transparent;margin-bottom:-4px;
+}
+.report-tabs button.selected{color:var(--navy);font-weight:700;border-bottom-color:var(--navy)}
+.report-body{padding-bottom:18px}
+.report-heading{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 22px;background:#fff;font-size:20px;
+}
+.report-heading strong{font-weight:700}
+.text-button{
+  border:0;background:transparent;color:var(--navy);font-weight:600;font-size:17px;padding:8px 0;
+}
+.chart-wrap{
+  position:relative;
+  background:#fff;
+  height:345px;
+  overflow:hidden;
+}
+.chart-scroller{
+  width:100%;
+  height:322px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x;
+  scrollbar-width:none;
+}
+.chart-scroller::-webkit-scrollbar{display:none}
+.chart{
+  display:block;
+  height:322px;
+  max-width:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.grid,.vgrid{stroke:#e5e8ef;stroke-width:1}
+.axis{stroke:#d7dbe4;stroke-width:1.2}
+.net-line{fill:none;stroke:#389b67;stroke-width:2;pointer-events:none}
+.income-bar{fill:#3145a7;pointer-events:none}
+.expense-bar{fill:#dc6241;pointer-events:none}
+.month-bg{fill:#f7f9fc;pointer-events:none}
+.month-underline{fill:#08006f;pointer-events:none}
+.month-label{
+  fill:#555a66;
+  font-size:17px;
+  text-anchor:middle;
+  pointer-events:none;
+}
+.month-hit{
+  fill:transparent;
+  pointer-events:all;
+  cursor:pointer;
+  touch-action:pan-x;
+}
+.chart-scale{
+  position:absolute;
+  left:10px;
+  color:#8b91a0;
+  font-size:13px;
+  z-index:3;
+  pointer-events:none;
+  background:rgba(255,255,255,.76);
+  padding-right:3px;
+}
+.chart-scale.top{top:17px}
+.chart-scale.zero{top:133px;left:31px}
+.chart-scale.bottom{bottom:23px}
+.summary-card{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:#fff;margin:12px 11px 14px;border-radius:10px;padding:23px 8px;
+}
+.summary-card>div{text-align:center;border-right:1px solid var(--line)}
+.summary-card>div:last-child{border-right:0}
+.summary-card span{display:block;color:#8a8f9b;font-weight:700;font-size:17px}
+.summary-card strong{display:block;margin-top:10px;font-size:20px;font-weight:500}
+.summary-card small{font-size:12px;color:#444;font-weight:400;margin-left:2px}
+.blue{color:var(--blue)}
+.red{color:var(--red)}
+.green{color:var(--green)}
+.evaluation{padding:4px 22px 0}
+.evaluation-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
+  color:#666b78;
+}
+.evaluation-title{font-size:17px;line-height:1.25}
+.evaluation-date{font-size:14px;margin-top:6px}
+.evaluation-badge{
+  flex:0 0 auto;background:#fff;border-radius:9px;padding:9px 11px;
+  color:#5e6286;font-size:15px;font-weight:700;
+}
+.evaluation-badge.profit{
+  color:#3e9568;background:#eef8f2;border-radius:8px;
+}
+.evaluation-text{
+  margin-top:14px;padding:13px 0 16px;border-top:1px solid var(--line);
+  color:#606572;font-size:17px;line-height:1.28;
+}
+.red-text{color:var(--red)}
+.blue-text{color:var(--blue)}
+.report-section-title{
+  padding:17px 22px;background:var(--bg);color:#646975;
+  font-size:17px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.report-row{
+  display:flex;justify-content:space-between;gap:16px;background:#fff;
+  padding:13px 22px;border-bottom:1px solid var(--line);min-height:82px;
+}
+.report-row-left{min-width:0}
+.report-row-title{
+  font-size:18px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.report-row-sub{font-size:14px;color:var(--muted);margin-top:5px;line-height:1.25}
+.report-row-right{text-align:right;flex:0 0 auto}
+.report-row-amount{font-size:20px;white-space:nowrap}
+.report-row-date{font-size:14px;color:var(--muted);margin-top:10px}
+
+@media (min-width:700px){
+  body{background:#e9ecf3}
+  .phone-shell{box-shadow:0 0 0 1px rgba(0,0,0,.03)}
+}
+
+
+/* 振込・振替 */
+.transfer-view{
+  min-height:100vh;
+  background:#eef0f6;
+}
+.transfer-page{
+  padding:calc(28px + env(safe-area-inset-top)) 0 28px;
+}
+.transfer-page h1{
+  margin:0;
+  padding:0 22px;
+  font-size:29px;
+  line-height:1.25;
+  font-weight:500;
+  letter-spacing:.01em;
+}
+.transfer-lead{
+  margin:12px 0 0;
+  padding:0 22px;
+  color:#5f6470;
+  font-size:16px;
+  line-height:1.5;
+}
+.transfer-menu-title{
+  margin-top:22px;
+  padding:0 22px 13px;
+  color:#5f6470;
+  font-size:17px;
+  border-bottom:1px solid #dfe2e8;
+}
+.transfer-menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px 15px;
+  padding:17px 22px 21px;
+}
+.transfer-card{
+  min-height:118px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#08006f;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:13px;
+  font-size:17px;
+  box-shadow:0 1px 0 rgba(0,0,0,.02);
+}
+.transfer-card.primary{
+  background:#08006f;
+  color:#fff;
+}
+.transfer-card-icon{
+  font-size:25px;
+  line-height:1;
+  font-weight:500;
+}
+.history-block{
+  border-top:1px solid #dfe2e8;
+}
+.history-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  padding:18px 22px 11px;
+}
+.history-title{
+  color:#5f6470;
+  font-size:17px;
+}
+.history-updated{
+  margin-top:4px;
+  color:#707582;
+  font-size:14px;
+}
+.history-link{
+  border:0;
+  background:transparent;
+  color:#08006f;
+  font-size:16px;
+  padding:8px 0;
+}
+.transfer-history-list{
+  background:#fff;
+  border-top:1px solid #dfe2e8;
+}
+.transfer-history-row{
+  width:100%;
+  min-height:104px;
+  border:0;
+  border-bottom:1px solid #dfe2e8;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 22px;
+  text-align:left;
+  color:inherit;
+}
+.transfer-history-row:active,
+.transfer-card:active{
+  filter:brightness(.97);
+}
+.transfer-history-left{
+  min-width:0;
+}
+.history-name{
+  font-size:19px;
+  line-height:1.25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.history-status-line{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px;
+  color:#626774;
+  font-size:14px;
+}
+.status-pill{
+  display:inline-block;
+  padding:3px 7px;
+  border-radius:5px;
+  background:#ececf6;
+  color:#5c5d83;
+  font-weight:700;
+}
+.history-date{
+  margin-top:5px;
+  color:#464b58;
+  font-size:15px;
+  font-weight:700;
+}
+.transfer-history-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:9px;
+  flex:0 0 auto;
+}
+.history-chevron{
+  color:#08006f;
+  font-size:35px;
+  line-height:.7;
+  font-weight:300;
+}
+.transfer-history-right strong{
+  font-size:22px;
+  line-height:1;
+  font-weight:500;
+}
+.transfer-history-right small{
+  font-size:13px;
+  font-weight:400;
+}
+.transfer-history-empty{
+  padding:20px 22px 18px;
+  border-bottom:1px solid #dfe2e8;
+}
+.transfer-toast{
+  position:sticky;
+  bottom:90px;
+  width:max-content;
+  max-width:calc(100% - 44px);
+  margin:14px auto 0;
+  padding:9px 14px;
+  border-radius:18px;
+  background:rgba(32,33,39,.9);
+  color:#fff;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+}
+.transfer-toast.show{
+  opacity:1;
+}
+
+
+/* ===== v6-15: ホーム画面を参照スクリーンショットの寸法へ寄せる ===== */
+:root{
+  --navy:#000061;
+  --bg:#f0f2f6;
+}
+.phone-shell{
+  max-width:430px;
+  background:var(--bg);
+  padding-bottom:calc(83px + env(safe-area-inset-bottom));
+}
+
+/* ヘッダー: iPhone 390px幅時に参照画像と同じ縦位置になる寸法 */
+.hero{
+  padding:calc(13px + env(safe-area-inset-top)) 20px 96px;
+}
+.top-row{gap:10px;min-height:36px}
+.mizuho-wordmark{
+  width:94px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  font-size:0;
+  line-height:0;
+}
+.mizuho-wordmark img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.demo-badge{display:none}
+.top-actions{gap:9px}
+.points{
+  height:36px;
+  min-width:124px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+  padding:0 11px;
+  border-radius:7px;
+  background:#2a3190;
+  font-size:18px;
+  line-height:1;
+  white-space:nowrap;
+}
+.points strong{font-size:18px;font-weight:500}
+.points-unit{font-size:18px;margin-left:-3px}
+.coin{
+  width:22px;
+  height:22px;
+  flex:0 0 22px;
+  font-size:14px;
+  background:#f3be44;
+  color:#273594;
+  font-weight:800;
+}
+.top-icon{
+  width:27px;
+  height:27px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  flex:0 0 27px;
+}
+.top-icon svg{width:27px;height:27px;overflow:visible}
+.top-icon svg path,.top-icon svg rect,.top-icon svg circle{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.25;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.top-icon svg .fill-icon,.bell-icon svg .fill-icon{fill:currentColor;stroke:none}
+.bell-icon{width:25px;flex-basis:25px}
+.bell-icon svg{width:25px;height:25px}
+
+.update{
+  margin-top:28px;
+  font-size:14px;
+  line-height:20px;
+  color:#b9bad1;
+}
+.balance-line{margin-top:4px;align-items:flex-end}
+.ghost-button{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:15px;
+  line-height:20px;
+  color:#c6c7dc;
+  padding:4px 0 5px;
+  white-space:nowrap;
+}
+.eye-off-icon{
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+}
+.eye-off-icon path{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.balance{gap:6px}
+.balance strong{
+  font-size:39px;
+  line-height:.76;
+  font-weight:400;
+  letter-spacing:-0.7px;
+  display:inline-block;
+  transform:translateY(-2px) scaleX(0.96) scaleY(0.85);
+  transform-origin:right bottom;
+}
+.balance span{
+  font-size:14px;
+  padding-bottom:2px;
+  font-weight:400;
+}
+
+/* 口座カード: 197px開始、70 + 28 + 60x6 の構成 */
+.account-card{
+  margin:-93px 20px 0;
+  border-radius:10px;
+}
+.account-head{
+  min-height:70px;
+  padding:10px 21px 8px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.branch{
+  font-size:23px;
+  line-height:28px;
+  font-weight:400;
+}
+.account-number{
+  margin-top:1px;
+  font-size:16px;
+  line-height:20px;
+}
+.card-section-title{
+  height:28px;
+  padding:4px 21px;
+  display:flex;
+  align-items:center;
+  font-size:15px;
+  line-height:19px;
+  background:#f9f9fc;
+}
+.transaction-row{
+  min-height:60px;
+  height:60px;
+  padding:7px 21px 6px;
+  gap:12px;
+}
+.transaction-row .name{
+  font-size:17px;
+  line-height:22px;
+  letter-spacing:.01em;
+}
+.transaction-row .date{
+  margin-top:3px;
+  font-size:15px;
+  line-height:18px;
+}
+.transaction-row .amount{
+  font-size:19px;
+  line-height:24px;
+  font-weight:600;
+}
+.primary-button{
+  width:calc(100% - 40px);
+  height:52px;
+  margin:23px 20px 31px;
+  padding:0 16px;
+  border-radius:7px;
+  font-size:17px;
+  line-height:52px;
+  font-weight:500;
+}
+
+/* 下部ナビ: 参照画像の線画アイコンに変更 */
+.bottom-nav{
+  max-width:430px;
+  min-height:83px;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px 2px calc(7px + env(safe-area-inset-bottom));
+  border-top:1px solid #d5d7dd;
+}
+.nav-item{
+  gap:3px;
+  padding:1px 0 0;
+  color:#a2a5ab;
+}
+.nav-icon{
+  width:27px;
+  height:27px;
+  display:block;
+  overflow:visible;
+}
+.nav-icon path,.nav-icon circle,.nav-icon rect{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.nav-icon .fill-icon{fill:currentColor;stroke:none}
+.nav-item small{
+  font-size:11px;
+  line-height:14px;
+  font-weight:400;
+}
+.nav-item.selected{color:#000061}
+.nav-item.selected small{font-weight:600}
+.nav-item.disabled{opacity:1;color:#a5a8ae}
+
+/* 既存の文字グリフ用指定を無効化 */
+.nav-item>span{display:none}
+
+/* 入出金明細側でも新しい目アイコンを自然に収める */
+.details-hero .ghost-button{font-size:15px}
+
+@media (max-width:360px){
+  .hero{padding-left:17px;padding-right:17px}
+  .top-actions{gap:6px}
+  .points{min-width:116px;padding:0 9px}
+  .mizuho-wordmark{width:88px;height:39px}
+  .account-card{margin-left:17px;margin-right:17px}
+  .primary-button{width:calc(100% - 34px);margin-left:17px;margin-right:17px}
+}
+
+/* v6-15 final pixel-fit refinements for 390×844 standalone layout */
+.hero{padding-bottom:102px}
+.top-actions{gap:10px}
+.top-icon{width:28px;height:28px;flex-basis:28px}
+.top-icon svg{width:28px;height:28px}
+.bell-icon{width:26px;flex-basis:26px}
+.bell-icon svg{width:26px;height:26px}
+.phone-shell{padding-bottom:83px}
+.bottom-nav{
+  height:calc(49px + env(safe-area-inset-bottom));
+  min-height:0;
+  padding:5px 2px calc(3px + env(safe-area-inset-bottom));
+}
+.nav-icon{width:24px;height:24px}
+.nav-item{gap:2px}
+
+/* ===== v6-17 refinements: bottom nav typography + details screen matches reference ===== */
+.bottom-nav{
+  height:calc(52px + env(safe-area-inset-bottom));
+  padding:4px 0 calc(4px + env(safe-area-inset-bottom));
+}
+.nav-item{
+  gap:1px;
+  justify-content:flex-start;
+}
+.nav-icon{
+  width:25px;
+  height:25px;
+}
+.nav-item small{
+  font-size:12px;
+  line-height:15px;
+  font-weight:400;
+  letter-spacing:-0.02em;
+}
+.nav-item.selected small{
+  font-weight:500;
+}
+
+/* 入出金明細画面は参照スクショどおりシンプルなヘッダーにする */
+.details-hero{
+  position:relative;
+  padding:calc(14px + env(safe-area-inset-top)) 0 14px;
+  min-height:96px;
+}
+.details-hero .back-button{
+  top:calc(18px + env(safe-area-inset-top));
+  left:16px;
+  font-size:46px;
+  padding:0 6px;
+}
+.details-title{
+  text-align:center;
+  padding:0 56px;
+}
+.branch.small{
+  font-size:23px;
+  line-height:1.2;
+  font-weight:400;
+}
+.account-number.light{
+  margin-top:2px;
+  color:#d2d3e5;
+  font-size:16px;
+  line-height:1.25;
+}
+.details-update,
+.details-balance,
+.withdrawable,
+.month-year-label{
+  display:none !important;
+}
+.month-tabs-wrap{
+  background:#fff;
+  border-top:none;
+  border-bottom:1px solid #daddE5;
+}
+.month-tabs{
+  background:#fff;
+  border-bottom:1px solid #daddE5;
+}
+.month-tabs button{
+  flex:0 0 66px;
+  padding:15px 0 10px;
+  font-size:18px;
+  line-height:22px;
+  font-weight:400;
+  color:#59606c;
+  border-bottom:5px solid transparent;
+}
+.month-tabs button.selected{
+  color:#000061;
+  border-bottom-color:#000061;
+}
+.detail-list{
+  background:#fff;
+}
+.detail-row{
+  min-height:95px;
+  padding:12px 20px 12px 24px;
+  gap:12px;
+  align-items:center;
+}
+.detail-row .name{
+  font-size:20px;
+  line-height:1.35;
+  letter-spacing:0.08em;
+}
+.detail-row .date{
+  margin-top:8px;
+  font-size:15px;
+  line-height:1.2;
+  color:#7b8090;
+}
+.detail-row .amount{
+  font-size:24px;
+  line-height:1.15;
+  font-weight:600;
+  letter-spacing:-0.02em;
+}
+.running{
+  font-size:15px;
+  line-height:1.2;
+  color:#7b8090;
+  margin-top:8px;
+}
+
+/* ===== v6-18 refinements: ホーム画面の明細テキストを参照スクショ寄りに調整 ===== */
+.card-section-title{
+  height:30px;
+  padding:5px 21px;
+  font-size:16px;
+  line-height:20px;
+  font-weight:600;
+  color:#6d7280;
+}
+.transaction-row{
+  min-height:66px;
+  height:66px;
+  padding:8px 21px 7px;
+  align-items:center;
+}
+.transaction-row .name{
+  font-size:19px;
+  line-height:1.28;
+  font-weight:400;
+  letter-spacing:.04em;
+  color:#111;
+}
+.transaction-row .date{
+  margin-top:5px;
+  font-size:15px;
+  line-height:1.2;
+  color:#7d8391;
+}
+.transaction-row .amount{
+  font-size:22px;
+  line-height:1.12;
+  font-weight:600;
+  letter-spacing:-0.01em;
+  color:#111;
+}
+.transaction-row .yen{
+  font-size:15px;
+  font-weight:400;
+  color:#444a56;
+  margin-left:5px;
+}
+
+/* ===== v6-19 refinements: ホーム画面の明細文字をさらに小さく・細く調整 ===== */
+.transaction-row{
+  min-height:64px;
+  height:64px;
+  padding:8px 21px 6px;
+}
+.transaction-row .name{
+  font-size:17px;
+  line-height:1.24;
+  font-weight:400;
+  letter-spacing:.02em;
+}
+.transaction-row .date{
+  margin-top:4px;
+  font-size:14px;
+  line-height:1.18;
+  font-weight:400;
+  color:#7d8391;
+}
+.transaction-row .amount{
+  font-size:19px;
+  line-height:1.08;
+  font-weight:400;
+  letter-spacing:0;
+  color:#111;
+}
+.transaction-row .yen{
+  font-size:14px;
+  font-weight:400;
+  margin-left:4px;
+  color:#4c5360;
+}
+
+/* ===== v6-20 final typography pass: 明細の文字・残高・円表記を参照スクショに寄せる ===== */
+
+/* ホーム画面の最近のお取引 */
+.transaction-row{
+  min-height:62px;
+  height:62px;
+  padding:7px 21px 6px;
+  align-items:center;
+}
+.transaction-row .name{
+  font-size:16px;
+  line-height:1.22;
+  font-weight:400;
+  letter-spacing:.045em;
+  color:#111;
+}
+.transaction-row .date{
+  margin-top:4px;
+  font-size:13px;
+  line-height:1.16;
+  font-weight:400;
+  color:#7f8593;
+}
+.transaction-row .amount{
+  display:flex;
+  align-items:baseline;
+  justify-content:flex-end;
+  gap:3px;
+  font-weight:400;
+  color:#111;
+}
+.transaction-row .amount-value{
+  font-size:18px;
+  line-height:1;
+  font-weight:400;
+  letter-spacing:0;
+}
+.transaction-row .yen{
+  font-size:12px;
+  line-height:1;
+  font-weight:400;
+  color:#4d5460;
+  margin-bottom:1px;
+}
+
+/* 入出金明細一覧 */
+.detail-row{
+  min-height:72px;
+  padding:8px 20px 8px 24px;
+  gap:10px;
+  align-items:center;
+}
+.detail-row .name{
+  font-size:16px;
+  line-height:1.18;
+  font-weight:400;
+  letter-spacing:.06em;
+  color:#111;
+}
+.detail-row .date{
+  margin-top:4px;
+  font-size:13px;
+  line-height:1.12;
+  font-weight:400;
+  color:#7f8593;
+}
+.detail-row .amount{
+  display:flex;
+  align-items:baseline;
+  justify-content:flex-end;
+  gap:3px;
+  color:#111;
+  font-weight:400;
+}
+.detail-row .amount-value{
+  font-size:18px;
+  line-height:1;
+  font-weight:400;
+  letter-spacing:0;
+}
+.detail-row .amount .yen{
+  font-size:12px;
+  line-height:1;
+  font-weight:400;
+  color:#4d5460;
+  margin-bottom:1px;
+}
+.running{
+  display:flex;
+  align-items:baseline;
+  justify-content:flex-end;
+  gap:2px;
+  margin-top:4px;
+  color:#7f8593;
+  font-weight:400;
+}
+.running-label,
+.running-value{
+  font-size:13px;
+  line-height:1.08;
+  font-weight:400;
+  color:#7f8593;
+}
+.running .yen{
+  font-size:11px;
+  line-height:1;
+  font-weight:400;
+  color:#7f8593;
+}
